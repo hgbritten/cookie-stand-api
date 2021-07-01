@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     "corsheaders",
     # local
     "accounts",
-    "cookies",
+    "cookie_stands",
 ]
 
 MIDDLEWARE = [

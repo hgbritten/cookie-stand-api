@@ -2,7 +2,7 @@ import fire
 import requests
 
 API_HOST = "http://localhost:8000"
-RESOURCE_URI = "cookies"
+RESOURCE_URI = "cookie_stands"
 USERNAME = "admin"
 PASSWORD = "admin"
 
@@ -71,12 +71,12 @@ class ApiTester:
         return response.json()
 
     # TODO adjust parameter names to match API
-    def create(self, name, description=None, baker=None):
+    def create(self, name, description=None, owner=None):
         """creates a resource in api
 
         Usage:
         python api_tester.py create /
-            --name=required --description=optional --baker=optional
+            --name=required --description=optional --owner=optional
 
         Returns: JSON
         """
@@ -92,19 +92,19 @@ class ApiTester:
         data = {
             "name": name,
             "description": description,
-            "baker": baker,
+            "owner": owner,
         }
 
         response = requests.post(url, json=data, headers=headers)
 
         return response.json()
 
-    def update(self, id, name=None, description=None, baker=None):
+    def update(self, id, name=None, description=None, owner=None):
         """updates a resource in api
 
         Usage:
         python api_tester.py update 1 /
-            --name=optional --description=optional --baker=optional
+            --name=optional --description=optional --owner=optional
 
         Returns: JSON
         """
@@ -122,7 +122,7 @@ class ApiTester:
         data = {
             "name": name or original["name"],
             "description": description or original["description"],
-            "baker": baker or original["baker"],
+            "owner": owner or original["owner"],
         }
 
         response = requests.put(url, json=data, headers=headers)
